@@ -1,0 +1,5 @@
+1) Given a value n, print an inverted pyramid of stars containing n lines.
+2) Convert a number n to binary. Dont use inbuilt libraries.
+3) Powmod. Given 3 numbers x,y,z print (x^y)%z.
+You have to submit the solution by Sunday evening, and the first team to upload a tar file of all the solutions, will get maximum marks.
+A well commented code is always appreciated and yes I do need a readme stating what all dependancies I need to install to run the code. If you could write a script for that, bonus marks for that.
