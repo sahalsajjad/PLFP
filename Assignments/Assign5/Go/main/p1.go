@@ -1,27 +1,43 @@
 package main
-import "fmt"
-func pathfind(srcx int, srcy int, dstx int, dsty int) int{
-	/* End upon reaching the destination */	
-	if(srcx == dstx && srcy == dstx ){
-		return 1
-	}else if(srcx == dstx){
-		/* Traverse only right in case rows are exhaustes */
-		return pathfind(srcx, srcy+1, dstx, dsty)	
-	}else if(srcy == dsty ){
-		/* Traverse only down in case columns are exhausted */
-		return pathfind(srcx+1, srcy, dstx, dsty)	
-	}else if(srcx < dstx && srcy < dsty ){ 
-		return pathfind(srcx+1, srcy, dstx, dsty) + pathfind(srcx, srcy+1, dstx, dsty)
+import(
+	"fmt"
+)
+func max( a int, b int) int{
+	if( a >= b){
+		return a
 	}else{
-		return 0
+		return b
 	}
-		
 }
-func main(){
+func main(){	
 	var x1,x2,y1,y2 int
+	
 	fmt.Print("Enter the values of x and y for source:")
 	fmt.Scanf("%d %d", &x1, &y1)
 	fmt.Print("Enter the values of x and y for destination:")
 	fmt.Scanf("%d %d", &x2, &y2)
-	fmt.Println(pathfind(x1,y1,x2,y2))
+	
+	if( x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0 ){
+		fmt.Println("Please provide Positive values")
+	}else if(x1 > x2 || y1 > y2){
+		fmt.Println("Path not possible")
+	}else{
+		
+		var TAB [1000][1000]int
+		
+		for i:=1; i<(x2-x1+1); i++ {
+			TAB[i][0] = 1
+		}
+		for j:=1; j<(y2-y1+1) ; j++ {
+				TAB[0][j] = 1		
+		}
+		for i:=1; i<(x2-x1+1); i++ {
+			for j:=1; j<(y2-y1+1) ; j++ {
+					TAB[i][j] = TAB[i-1][j] + TAB[i][j-1]		
+			}
+		}
+		fmt.Printf("%d", TAB[x2-x1][y2-y1])
+	}
+	
+	
 }
